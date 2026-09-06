@@ -306,8 +306,14 @@ def get_alerts():
 def export_csv():
     """Exports alerts table as downloadable CSV."""
     if not soc_state.latest_alerts:
-        return Response("No alerts available.", mimetype="text/plain")
-    df_alerts = pd.DataFrame(soc_state.latest_alerts)
+        df_alerts = pd.DataFrame(columns=[
+            "id", "timestamp", "src_ip", "dst_ip", "dst_port", "service",
+            "attack_class", "confidence", "risk_score", "risk_level",
+            "kill_chain_stage", "predicted_next_stage", "next_stage_name",
+            "tti_minutes", "soar_policy"
+        ])
+    else:
+        df_alerts = pd.DataFrame(soc_state.latest_alerts)
     csv_str = df_alerts.to_csv(index=False)
     return Response(
         csv_str,
@@ -316,8 +322,10 @@ def export_csv():
     )
 
 if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5050))
     soc_state.initialize()
     print("======================================================================")
-    print("  SOC Command Center running at: http://127.0.0.1:5000")
+    print(f"  SOC Command Center running at: http://127.0.0.1:{port}")
     print("======================================================================")
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=port, debug=False)
