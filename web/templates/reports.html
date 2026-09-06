@@ -3,166 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What-If Sandbox, Explainability & Mitigation | SIH26153</title>
+    <title>Mitigation, Sandbox & Evidence | SIH26153</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="bg-[#090d16] text-slate-200">
+<body class="bg-[#0b0e14] text-slate-200">
 
-    <!-- Top Navigation Bar -->
-    <header class="border-b border-slate-800/80 bg-[#0d1424]/90 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Top Application Bar -->
+    <header class="border-b border-[#1f2737] bg-[#121721] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center font-bold text-sky-400 text-sm">
-                    AI
-                </div>
+                <span class="px-2 py-0.5 rounded bg-blue-900/40 text-blue-400 border border-blue-700/50 text-[11px] font-mono font-bold tracking-wider">
+                    SIH26153
+                </span>
+                <div class="h-4 w-px bg-slate-700"></div>
                 <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-semibold text-slate-100 tracking-tight text-base">NetAttackForecast</span>
-                        <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                            SIH26153
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400">Explainability, What-If Simulation & Forensic Mitigation</p>
+                    <h1 class="text-xs font-bold text-slate-100 uppercase tracking-wider font-mono-data">
+                        Containment Sandbox & Forensic Evidence
+                    </h1>
+                    <p class="text-[10px] text-slate-400 font-mono-data">Counterfactual Simulation, SHAP Attribution & NIDS Signatures</p>
                 </div>
             </div>
 
-            <!-- Segmented Navigation Tabs -->
-            <nav class="flex items-center p-1 bg-slate-900/90 rounded-lg border border-slate-800">
-                <a href="/" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
-                    Live Telemetry & Graph
+            <!-- Tabs -->
+            <nav class="flex items-center space-x-1">
+                <a href="/" class="px-3 py-1.5 rounded text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+                    Live Telemetry & Topology
                 </a>
-                <a href="/forecast" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
-                    Forecaster & Kill Chain
+                <a href="/forecast" class="px-3 py-1.5 rounded text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+                    Kill Chain Sequence
                 </a>
-                <a href="/reports" class="px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 text-white shadow-sm">
-                    What-If & Reports
+                <a href="/reports" class="px-3 py-1.5 rounded text-xs font-semibold bg-blue-600/20 text-blue-300 border border-blue-500/40">
+                    Mitigation & Evidence
                 </a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
 
-        <!-- Top Grid: What-If Sandbox & SHAP Explainability -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Top Grid: Sandbox & SHAP Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-            <!-- What-If Counterfactual Sandbox -->
-            <div class="clean-card p-5">
-                <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-sm font-semibold text-slate-100">What-If Counterfactual Simulation</h3>
-                    <span class="text-xs text-slate-400 font-mono">Simulate Containment</span>
+            <!-- Countermeasure Sandbox -->
+            <div class="soc-panel">
+                <div class="soc-panel-header flex items-center justify-between">
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono-data">
+                        Defensive Countermeasure Sandbox (What-If Counterfactual Analysis)
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-mono-data">Simulate Policy Before Enforcement</span>
                 </div>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Toggle active security controls below to simulate their immediate quantitative effect on risk score reduction and kill chain containment.
-                </p>
 
-                <form id="whatif-form" class="space-y-2.5">
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
+                <div class="p-4 space-y-4">
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Simulate defensive ACL and host isolation policies to measure projected risk delta ($\Delta \text{Risk}$) and confirm containment prior to applying firewall rules.
+                    </p>
+
+                    <form id="whatif-form" class="space-y-2 text-xs">
+                        <label class="flex items-center justify-between p-2.5 rounded bg-[#0f131c] border border-[#1f2737] hover:border-slate-600 cursor-pointer transition">
+                            <div>
+                                <span class="font-mono-data font-bold text-slate-200 block">Block Source IP (203.0.113.19)</span>
+                                <span class="text-[11px] text-slate-400 font-mono-data">Edge perimeter DROP on all incoming interface flows</span>
+                            </div>
+                            <input id="whatif-block-ip" type="checkbox" class="w-4 h-4 rounded text-blue-600 bg-[#161b26] border-slate-700" checked>
+                        </label>
+
+                        <label class="flex items-center justify-between p-2.5 rounded bg-[#0f131c] border border-[#1f2737] hover:border-slate-600 cursor-pointer transition">
+                            <div>
+                                <span class="font-mono-data font-bold text-slate-200 block">Quarantine Target Host (192.168.10.20)</span>
+                                <span class="text-[11px] text-slate-400 font-mono-data">Isolate onto remediation VLAN to prevent lateral pivot</span>
+                            </div>
+                            <input id="whatif-quarantine" type="checkbox" class="w-4 h-4 rounded text-blue-600 bg-[#161b26] border-slate-700">
+                        </label>
+
+                        <label class="flex items-center justify-between p-2.5 rounded bg-[#0f131c] border border-[#1f2737] hover:border-slate-600 cursor-pointer transition">
+                            <div>
+                                <span class="font-mono-data font-bold text-slate-200 block">Adaptive Port Rate-Limiting</span>
+                                <span class="text-[11px] text-slate-400 font-mono-data">Limit TCP SYN handshake pacing on port 80 to 50 req/s</span>
+                            </div>
+                            <input id="whatif-rate-limit" type="checkbox" class="w-4 h-4 rounded text-blue-600 bg-[#161b26] border-slate-700">
+                        </label>
+
+                        <label class="flex items-center justify-between p-2.5 rounded bg-[#0f131c] border border-[#1f2737] hover:border-slate-600 cursor-pointer transition">
+                            <div>
+                                <span class="font-mono-data font-bold text-slate-200 block">Zero-Trust Cross-Subnet ACL</span>
+                                <span class="text-[11px] text-slate-400 font-mono-data">Block DMZ-to-Internal Database traversal (Port 1433/3306)</span>
+                            </div>
+                            <input id="whatif-zero-trust" type="checkbox" class="w-4 h-4 rounded text-blue-600 bg-[#161b26] border-slate-700">
+                        </label>
+                    </form>
+
+                    <!-- Sandbox Output -->
+                    <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737] flex items-center justify-between text-xs">
                         <div>
-                            <span class="text-xs font-medium text-slate-200 block">Block Attacking Source IP</span>
-                            <span class="text-[11px] text-slate-400">Drop all inbound flows at edge firewall</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-mono-data block">Projected Risk</span>
+                            <div class="flex items-baseline space-x-1 mt-0.5">
+                                <span id="whatif-result-score" class="text-xl font-bold font-mono-data text-emerald-400">8.5</span>
+                                <span class="text-slate-500 text-[10px] font-mono-data">/ 100</span>
+                            </div>
                         </div>
-                        <input id="whatif-block-ip" type="checkbox" class="w-4 h-4 rounded text-sky-500 bg-slate-800 border-slate-700 focus:ring-sky-500" checked>
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
                         <div>
-                            <span class="text-xs font-medium text-slate-200 block">Quarantine Target Host</span>
-                            <span class="text-[11px] text-slate-400">Isolate host into containment VLAN to prevent lateral pivot</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-mono-data block">Delta Impact</span>
+                            <span id="whatif-result-delta" class="text-emerald-400 font-bold font-mono-data text-xs mt-1 block">-55.0 (-86%)</span>
                         </div>
-                        <input id="whatif-quarantine" type="checkbox" class="w-4 h-4 rounded text-sky-500 bg-slate-800 border-slate-700 focus:ring-sky-500">
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
                         <div>
-                            <span class="text-xs font-medium text-slate-200 block">Adaptive Rate-Limiting</span>
-                            <span class="text-[11px] text-slate-400">Throttle TCP SYN burst packets to 50 req/sec</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-mono-data block mb-1">Status</span>
+                            <span id="whatif-result-status" class="px-2 py-0.5 rounded text-[10px] font-bold font-mono-data bg-emerald-950 text-emerald-400 border border-emerald-800">
+                                CONTAINED
+                            </span>
                         </div>
-                        <input id="whatif-rate-limit" type="checkbox" class="w-4 h-4 rounded text-sky-500 bg-slate-800 border-slate-700 focus:ring-sky-500">
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
-                        <div>
-                            <span class="text-xs font-medium text-slate-200 block">Zero-Trust Cross-Subnet ACL</span>
-                            <span class="text-[11px] text-slate-400">Strictly block DMZ-to-Internal database access</span>
-                        </div>
-                        <input id="whatif-zero-trust" type="checkbox" class="w-4 h-4 rounded text-sky-500 bg-slate-800 border-slate-700 focus:ring-sky-500">
-                    </label>
-                </form>
-
-                <!-- Simulation Output -->
-                <div class="mt-4 p-4 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
-                    <div>
-                        <span class="text-slate-400 text-[11px] block">Projected Risk</span>
-                        <div class="flex items-baseline space-x-1 mt-0.5">
-                            <span id="whatif-result-score" class="text-2xl font-bold font-mono-num text-emerald-400">8.5</span>
-                            <span class="text-slate-500 text-[10px]">/ 100</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 text-[11px] block">Delta Reduction</span>
-                        <span id="whatif-result-delta" class="text-emerald-400 font-bold font-mono-num text-xs mt-1 block">-55.0 (86%)</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 text-[11px] block mb-1">Status</span>
-                        <span id="whatif-result-status" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            CONTAINED
-                        </span>
                     </div>
                 </div>
             </div>
 
-            <!-- Explainability: SHAP Feature Attribution -->
-            <div class="clean-card p-5">
-                <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-sm font-semibold text-slate-100">AI Explainability (SHAP Attribution)</h3>
-                    <span class="text-xs text-slate-400 font-mono">Feature Weights</span>
+            <!-- Signal Attribution (SHAP) -->
+            <div class="soc-panel">
+                <div class="soc-panel-header flex items-center justify-between">
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono-data">
+                        Feature Signal Attribution (TreeSHAP Decomposition)
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-mono-data">Model Explanation</span>
                 </div>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Marginal feature contribution waterfall showing top signals driving the forecast model.
-                </p>
 
-                <div id="shap-bars-container" class="space-y-3">
-                    <!-- Populated dynamically by dashboard.js -->
+                <div class="p-4 space-y-3 text-xs">
+                    <p class="text-slate-400 leading-relaxed">
+                        Marginal feature attribution scores explaining the mathematical signals that drove the model to elevate threat scoring:
+                    </p>
+
+                    <div id="shap-bars-container" class="space-y-3 pt-2">
+                        <!-- Populated dynamically by dashboard.js -->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Automated Mitigation Rule Package & Export -->
-        <div class="clean-card p-5">
-            <div class="flex items-center justify-between mb-4">
+        <!-- Automated Mitigation Package -->
+        <div class="soc-panel">
+            <div class="soc-panel-header flex items-center justify-between">
                 <div>
-                    <h3 class="text-sm font-semibold text-slate-100">Automated Mitigation Rules (SOAR Playbook)</h3>
-                    <p class="text-xs text-slate-400">Ready-to-deploy firewall containment commands and NIDS signatures</p>
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono-data">
+                        Automated Mitigation Rules (SOAR Playbook Artifacts)
+                    </h3>
                 </div>
-                <a href="/api/export/csv" class="bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
-                    <span>Export Forensic CSV</span>
-                    <span>📥</span>
+                <a href="/api/export/csv" class="bg-[#1a2130] hover:bg-[#232b3d] text-slate-200 text-xs font-medium px-3 py-1 rounded border border-[#273142] transition flex items-center gap-1.5 font-mono-data">
+                    <span>Export Incident Audit CSV</span>
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <!-- Linux iptables -->
-                <div class="p-3.5 rounded-lg bg-slate-900 border border-slate-800">
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737]">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="font-mono font-medium text-sky-400">Linux iptables Firewall Rule</span>
-                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-iptables').textContent); alert('Copied iptables rules!');" class="text-[11px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 border border-slate-700">Copy</button>
+                        <span class="font-mono-data font-bold text-slate-300">Linux iptables Firewall Rule</span>
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-iptables').textContent); alert('Copied iptables rules to clipboard.');" class="text-[10px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-[#1a2130] border border-[#273142] font-mono-data">Copy</button>
                     </div>
-                    <pre id="mitigation-iptables" class="font-mono text-emerald-400 bg-black/40 p-3 rounded overflow-x-auto text-[11px] leading-relaxed">sudo iptables -I INPUT -s 203.0.113.19 -j DROP
+                    <pre id="mitigation-iptables" class="font-mono-data text-emerald-400 bg-black/40 p-2.5 rounded text-[11px] leading-relaxed overflow-x-auto">sudo iptables -I INPUT -s 203.0.113.19 -j DROP
 sudo iptables -I FORWARD -s 203.0.113.19 -j DROP
 sudo iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 50 -j REJECT</pre>
                 </div>
 
                 <!-- Suricata / Zeek Signature -->
-                <div class="p-3.5 rounded-lg bg-slate-900 border border-slate-800">
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737]">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="font-mono font-medium text-purple-400">Suricata / Zeek NIDS Signature</span>
-                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-suricata').textContent); alert('Copied signature!');" class="text-[11px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 border border-slate-700">Copy</button>
+                        <span class="font-mono-data font-bold text-slate-300">Suricata / Zeek NIDS Detection Rule</span>
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-suricata').textContent); alert('Copied NIDS signature to clipboard.');" class="text-[10px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-[#1a2130] border border-[#273142] font-mono-data">Copy</button>
                     </div>
-                    <pre id="mitigation-suricata" class="font-mono text-amber-300 bg-black/40 p-3 rounded overflow-x-auto text-[11px] leading-relaxed">alert tcp 203.0.113.19 any -> 192.168.10.20 80 (msg:"SIH26153 - AI Forecasted Attack from 203.0.113.19"; flags:S,12; threshold:type both, track by_src, count 20, seconds 60; classtype:attempted-admin; sid:1000999; rev:1;)</pre>
+                    <pre id="mitigation-suricata" class="font-mono-data text-amber-300 bg-black/40 p-2.5 rounded text-[11px] leading-relaxed overflow-x-auto">alert tcp 203.0.113.19 any -> 192.168.10.20 80 (msg:"SIH26153 - Forecasted Attack from 203.0.113.19"; flags:S,12; threshold:type both, track by_src, count 20, seconds 60; classtype:attempted-admin; sid:1000999; rev:1;)</pre>
                 </div>
             </div>
         </div>

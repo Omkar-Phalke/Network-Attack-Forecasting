@@ -3,151 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attack Forecaster & Kill Chain | SIH26153</title>
+    <title>Kill Chain Sequence & Pivot Graph | SIH26153</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Vis.js Network CDN -->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="bg-[#090d16] text-slate-200">
+<body class="bg-[#0b0e14] text-slate-200">
 
-    <!-- Top Navigation Bar -->
-    <header class="border-b border-slate-800/80 bg-[#0d1424]/90 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Top Application Bar -->
+    <header class="border-b border-[#1f2737] bg-[#121721] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center font-bold text-sky-400 text-sm">
-                    AI
-                </div>
+                <span class="px-2 py-0.5 rounded bg-blue-900/40 text-blue-400 border border-blue-700/50 text-[11px] font-mono font-bold tracking-wider">
+                    SIH26153
+                </span>
+                <div class="h-4 w-px bg-slate-700"></div>
                 <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-semibold text-slate-100 tracking-tight text-base">NetAttackForecast</span>
-                        <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                            SIH26153
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400">Attack Forecasting & Multi-Step Kill Chain Progression</p>
+                    <h1 class="text-xs font-bold text-slate-100 uppercase tracking-wider font-mono-data">
+                        Kill Chain Sequence & Pivot Projections
+                    </h1>
+                    <p class="text-[10px] text-slate-400 font-mono-data">Markovian Stage Transition & Time-to-Impact Modeling</p>
                 </div>
             </div>
 
-            <!-- Segmented Navigation Tabs -->
-            <nav class="flex items-center p-1 bg-slate-900/90 rounded-lg border border-slate-800">
-                <a href="/" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
-                    Live Telemetry & Graph
+            <!-- Tabs -->
+            <nav class="flex items-center space-x-1">
+                <a href="/" class="px-3 py-1.5 rounded text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+                    Live Telemetry & Topology
                 </a>
-                <a href="/forecast" class="px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 text-white shadow-sm">
-                    Forecaster & Kill Chain
+                <a href="/forecast" class="px-3 py-1.5 rounded text-xs font-semibold bg-blue-600/20 text-blue-300 border border-blue-500/40">
+                    Kill Chain Sequence
                 </a>
-                <a href="/reports" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
-                    What-If & Reports
+                <a href="/reports" class="px-3 py-1.5 rounded text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+                    Mitigation & Evidence
                 </a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
 
-        <!-- Clean Intro Card -->
-        <div class="clean-card p-5">
-            <h2 class="text-base font-bold text-white">AI Cyber Kill Chain Sequence Forecasting</h2>
-            <p class="text-xs text-slate-400 mt-1 max-w-3xl leading-relaxed">
-                Our Temporal Sequence & Markov forecaster monitors sliding temporal traffic windows to anticipate the adversary's next tactical progression, compute transition likelihood, and estimate Time-to-Impact (TTI) before critical internal infrastructure is compromised.
+        <!-- Methodological Brief -->
+        <div class="soc-panel p-4 border-l-2 border-l-blue-500">
+            <h2 class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono-data">
+                Multi-Step Cyber Kill Chain Sequence Modeling
+            </h2>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                Rather than treating network alerts as disconnected point-in-time anomalies, the sequence modeling engine correlates sliding-window telemetry ($W_{60s}, W_{300s}$) against an empirical Markovian transition matrix. This calculates the probability of the adversary advancing to subsequent kill chain phases and projects early Time-to-Impact (TTI) prior to asset compromise.
             </p>
         </div>
 
-        <!-- 6-Stage Cyber Kill Chain Progression -->
-        <div class="clean-card p-5">
-            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Cyber Kill Chain Timeline</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 text-xs">
+        <!-- Horizontal Cyber Kill Chain Pipeline -->
+        <div class="soc-panel">
+            <div class="soc-panel-header">
+                <span class="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono-data">
+                    Tactical Kill Chain Phase Tracking
+                </span>
+            </div>
+            <div class="p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
                 <!-- Stage 1 -->
-                <div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-center">
-                    <span class="text-[10px] font-semibold text-amber-400 block">Stage 1</span>
-                    <h4 class="font-bold text-slate-200 mt-1">Reconnaissance</h4>
-                    <span class="text-[10px] text-slate-400 block mt-0.5">Port & Service Scans</span>
-                    <span class="mt-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-300">OBSERVED</span>
+                <div class="p-3 rounded bg-[#171e2c] border border-amber-600/40">
+                    <span class="text-[10px] font-mono-data text-amber-400 font-bold block">STAGE 1</span>
+                    <h4 class="font-bold text-slate-200 mt-0.5">Reconnaissance</h4>
+                    <span class="text-[10px] text-slate-400 font-mono-data block">Port & Host Sweep</span>
+                    <span class="mt-2 inline-block px-1.5 py-0.5 rounded text-[9px] font-bold font-mono-data bg-amber-950 text-amber-300 border border-amber-800">
+                        ACTIVE STATE
+                    </span>
                 </div>
 
                 <!-- Stage 2 -->
-                <div class="p-3 rounded-lg bg-purple-500/10 border border-purple-500/40 text-center ring-1 ring-purple-500/50">
-                    <span class="text-[10px] font-semibold text-purple-400 block">Stage 2</span>
-                    <h4 class="font-bold text-white mt-1">Initial Access</h4>
-                    <span class="text-[10px] text-slate-300 block mt-0.5">SSH/FTP Brute Force</span>
-                    <span class="mt-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/30 text-purple-300">NEXT (58%)</span>
+                <div class="p-3 rounded bg-[#181d2e] border border-blue-500/60 ring-1 ring-blue-500/30">
+                    <span class="text-[10px] font-mono-data text-blue-400 font-bold block">STAGE 2</span>
+                    <h4 class="font-bold text-slate-100 mt-0.5">Initial Access</h4>
+                    <span class="text-[10px] text-slate-400 font-mono-data block">SSH/FTP Brute Force</span>
+                    <span class="mt-2 inline-block px-1.5 py-0.5 rounded text-[9px] font-bold font-mono-data bg-blue-950 text-blue-300 border border-blue-800">
+                        T+1 FORECAST (58%)
+                    </span>
                 </div>
 
                 <!-- Stage 3 -->
-                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-center opacity-80">
-                    <span class="text-[10px] font-semibold text-slate-500 block">Stage 3</span>
-                    <h4 class="font-medium text-slate-400 mt-1">Infiltration</h4>
-                    <span class="text-[10px] text-slate-500 block mt-0.5">Web Shell / Exploit</span>
-                    <span class="mt-2 text-[10px] text-slate-500 block">+12m projection</span>
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737] opacity-75">
+                    <span class="text-[10px] font-mono-data text-slate-500 font-bold block">STAGE 3</span>
+                    <h4 class="font-medium text-slate-400 mt-0.5">Infiltration</h4>
+                    <span class="text-[10px] text-slate-500 font-mono-data block">Exploit Staging</span>
+                    <span class="mt-2 text-[10px] text-slate-500 font-mono-data block">+12m projected</span>
                 </div>
 
                 <!-- Stage 4 -->
-                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-center opacity-80">
-                    <span class="text-[10px] font-semibold text-slate-500 block">Stage 4</span>
-                    <h4 class="font-medium text-slate-400 mt-1">Lateral Movement</h4>
-                    <span class="text-[10px] text-slate-500 block mt-0.5">SMB/RDP Pivoting</span>
-                    <span class="mt-2 text-[10px] text-slate-500 block">+20m projection</span>
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737] opacity-75">
+                    <span class="text-[10px] font-mono-data text-slate-500 font-bold block">STAGE 4</span>
+                    <h4 class="font-medium text-slate-400 mt-0.5">Lateral Pivot</h4>
+                    <span class="text-[10px] text-slate-500 font-mono-data block">SMB/RDP Discovery</span>
+                    <span class="mt-2 text-[10px] text-slate-500 font-mono-data block">+20m projected</span>
                 </div>
 
                 <!-- Stage 5 -->
-                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-center opacity-80">
-                    <span class="text-[10px] font-semibold text-slate-500 block">Stage 5</span>
-                    <h4 class="font-medium text-slate-400 mt-1">Command & Control</h4>
-                    <span class="text-[10px] text-slate-500 block mt-0.5">C2 Beaconing Sync</span>
-                    <span class="mt-2 text-[10px] text-slate-500 block">+28m projection</span>
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737] opacity-75">
+                    <span class="text-[10px] font-mono-data text-slate-500 font-bold block">STAGE 5</span>
+                    <h4 class="font-medium text-slate-400 mt-0.5">Command & Control</h4>
+                    <span class="text-[10px] text-slate-500 font-mono-data block">Beaconing Channel</span>
+                    <span class="mt-2 text-[10px] text-slate-500 font-mono-data block">+28m projected</span>
                 </div>
 
                 <!-- Stage 6 -->
-                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-center opacity-80">
-                    <span class="text-[10px] font-semibold text-slate-500 block">Stage 6</span>
-                    <h4 class="font-medium text-slate-400 mt-1">Impact / Exfil</h4>
-                    <span class="text-[10px] text-slate-500 block mt-0.5">Data Theft / DoS</span>
-                    <span class="mt-2 text-[10px] text-slate-500 block">Target Impact</span>
+                <div class="p-3 rounded bg-[#0f131c] border border-[#1f2737] opacity-75">
+                    <span class="text-[10px] font-mono-data text-slate-500 font-bold block">STAGE 6</span>
+                    <h4 class="font-medium text-slate-400 mt-0.5">Actions on Obj</h4>
+                    <span class="text-[10px] text-slate-500 font-mono-data block">Exfiltration / DoS</span>
+                    <span class="mt-2 text-[10px] text-slate-500 font-mono-data block">Impact Phase</span>
                 </div>
             </div>
         </div>
 
-        <!-- Future Attack Graph & Analytics -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Predicted Pivot Graph -->
-            <div class="lg:col-span-2 clean-card p-5">
-                <div class="flex items-center justify-between mb-3">
+        <!-- Predicted Next-Hop Pivot Graph & Telemetry Diagnostics -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <!-- Left: Predicted Attack Graph (2 Columns) -->
+            <div class="lg:col-span-2 soc-panel">
+                <div class="soc-panel-header flex items-center justify-between">
                     <div>
-                        <h3 class="text-sm font-semibold text-slate-100">Future Attack Graph (Projected Next-Hop Topology)</h3>
-                        <p class="text-xs text-slate-400">Dashed red edges indicate anticipated adversary pivot paths</p>
+                        <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono-data">
+                            Anticipated Pivot Topology (Next-Hop Projections)
+                        </h3>
                     </div>
-                    <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
-                        7 Projected Pivots
+                    <span class="text-[11px] font-mono-data text-blue-400 bg-blue-950/40 px-2 py-0.5 rounded border border-blue-800/60">
+                        7 Projected Edge Trajectories
                     </span>
                 </div>
-                <div id="forecast-network-graph"></div>
+                <div class="p-3">
+                    <div id="forecast-network-graph"></div>
+                </div>
             </div>
 
-            <!-- Infiltration & Exfiltration Risk Panels -->
-            <div class="space-y-6">
-                <div class="clean-card p-5">
-                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Infiltration Risk (Internal Entry)</span>
-                    <div class="flex items-baseline space-x-2 mt-2">
-                        <span class="text-3xl font-black font-mono-num text-amber-400">50.0%</span>
-                        <span class="text-xs text-slate-400">Moderate Threat</span>
+            <!-- Right: Diagnostic Metrics (1 Column) -->
+            <div class="space-y-5">
+                <div class="soc-panel p-4 space-y-3">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono-data block">
+                        Perimeter Ingress Traversal (Infiltration)
+                    </span>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-3xl font-bold font-mono-data text-amber-400">50.0%</span>
+                        <span class="text-xs text-slate-400 font-mono-data">Elevated Risk</span>
                     </div>
-                    <div class="mt-3 text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                        <p class="text-slate-400">• Perimeter boundary traversal identified</p>
-                        <p class="text-slate-400">• Target: Web Application Server (Criticality 0.85)</p>
+                    <div class="text-xs text-slate-400 space-y-1.5 border-t border-[#1f2737] pt-3 font-mono-data text-[11px]">
+                        <p>• External Ingress: 203.0.113.19</p>
+                        <p>• Internal Target: 192.168.10.20 (DMZ Web)</p>
+                        <p>• Cross-Subnet Boundary Flag: ACTIVE</p>
                     </div>
                 </div>
 
-                <div class="clean-card p-5">
-                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Exfiltration Risk (Data Leakage)</span>
-                    <div class="flex items-baseline space-x-2 mt-2">
-                        <span class="text-3xl font-black font-mono-num text-emerald-400">0.0%</span>
-                        <span class="text-xs text-slate-400">Baseline Normal</span>
+                <div class="soc-panel p-4 space-y-3">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono-data block">
+                        Egress Asymmetry Analysis (Exfiltration)
+                    </span>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-3xl font-bold font-mono-data text-emerald-400">0.0%</span>
+                        <span class="text-xs text-slate-400 font-mono-data">Nominal Baseline</span>
                     </div>
-                    <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                        Payload asymmetry within safe baseline. No covert outbound channel detected.
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Log payload asymmetry $\log_{10}(Fwd/Bwd)$ remains within normal limits. No covert exfiltration channel established.
                     </p>
                 </div>
             </div>
@@ -166,8 +182,8 @@
                     const nodes = new vis.DataSet(data.projected_nodes);
                     const edges = new vis.DataSet(data.projected_edges);
                     const options = {
-                        nodes: { font: { color: "#ffffff", size: 12 }, borderWidth: 2, shadow: true },
-                        edges: { font: { color: "#ef4444", size: 10, align: "top" }, smooth: { type: "continuous" } },
+                        nodes: { font: { color: "#e2e8f0", size: 11, face: "ui-monospace, monospace" }, borderWidth: 1, shadow: false },
+                        edges: { font: { color: "#cbd5e1", size: 9, align: "top" }, smooth: { type: "continuous" } },
                         physics: { barnesHut: { gravitationalConstant: -2500, springLength: 110 } }
                     };
                     new vis.Network(container, { nodes, edges }, options);

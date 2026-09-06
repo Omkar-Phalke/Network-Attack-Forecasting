@@ -1,89 +1,121 @@
-/* Clean, Modern Cybersecurity Dashboard Theme */
+/* ==========================================================================
+   Enterprise SOC Operations Dashboard Theme (Utility-First, Zero AI Tropes)
+   Designed for High Data-Density, Serious Incident Response & Analysis
+   ========================================================================== */
+
 :root {
-  --bg-main: #090d16;
-  --bg-surface: #131b2e;
-  --bg-surface-hover: #1a243d;
-  --border-subtle: #1e293b;
-  --border-hover: #334155;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  --color-primary: #38bdf8;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #f43f5e;
+  --bg-canvas: #0b0e14;
+  --bg-panel: #121721;
+  --bg-panel-header: #171d2a;
+  --bg-input: #0f131c;
+  --border-panel: #1f2737;
+  --border-muted: #1a202e;
+  --border-focus: #3b82f6;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-code: #cbd5e1;
+
+  --sev-critical: #e11d48;
+  --sev-high: #f97316;
+  --sev-medium: #d97706;
+  --sev-low: #10b981;
 }
 
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
 }
 
-/* Minimalist Surface Cards */
-.clean-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+/* Functional Enterprise Panels */
+.soc-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-panel);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.clean-card:hover {
-  border-color: var(--border-hover);
+.soc-panel-header {
+  background: var(--bg-panel-header);
+  border-bottom: 1px solid var(--border-panel);
+  padding: 10px 16px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-/* Vis.js Graph Canvas */
+/* Technical Monospace Elements */
+.font-mono-data {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Vis.js Network Graph Container */
 #network-graph, #forecast-network-graph {
   width: 100%;
-  height: 480px;
-  background-color: #0c1220;
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
+  height: 460px;
+  background-color: #0b0e14;
+  border-radius: 4px;
+  border: 1px solid var(--border-panel);
 }
 
-/* Minimalist Scrollbar */
+/* Enterprise Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-main);
+  background: var(--bg-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #273142;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #334155;
 }
 
-/* Subtle Pulsing Status */
-.status-dot-active {
-  width: 8px;
-  height: 8px;
+/* Solid Minimal Status Indicator (No Blinking / No Sci-Fi Glow) */
+.sensor-dot-online {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background-color: var(--color-success);
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation: pulse-green 2.5s infinite;
+  background-color: #10b981;
+  display: inline-block;
 }
 
-@keyframes pulse-green {
-  0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
+.sensor-dot-paused {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #f59e0b;
+  display: inline-block;
 }
 
-/* Monospace font standard */
-.font-mono-num {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-variant-numeric: tabular-nums;
+/* Clean Data Table */
+table.soc-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.soc-table th {
+  background-color: #151a25;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-panel);
+}
+table.soc-table td {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-muted);
+}
+table.soc-table tr:hover td {
+  background-color: #171e2c;
 }

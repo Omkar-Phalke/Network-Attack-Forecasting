@@ -75,21 +75,24 @@ function toggleStreaming() {
     isStreaming = !isStreaming;
     const btn = document.getElementById("toggle-stream-btn");
     const indicator = document.getElementById("stream-status-indicator");
+    const dot = document.getElementById("sensor-indicator-dot");
 
     if (isStreaming) {
         startStream();
-        if (btn) btn.textContent = "Pause Stream";
+        if (btn) btn.textContent = "Pause Replay";
         if (indicator) {
-            indicator.textContent = "LIVE";
-            indicator.className = "text-[11px] font-mono text-emerald-400 font-semibold tracking-wide";
+            indicator.textContent = "ONLINE";
+            indicator.className = "text-[11px] font-mono-data text-emerald-400 font-bold tracking-wide";
         }
+        if (dot) dot.className = "sensor-dot-online";
     } else {
         if (streamInterval) clearInterval(streamInterval);
-        if (btn) btn.textContent = "Resume Stream";
+        if (btn) btn.textContent = "Resume Replay";
         if (indicator) {
             indicator.textContent = "PAUSED";
-            indicator.className = "text-[11px] font-mono text-amber-400 font-semibold tracking-wide";
+            indicator.className = "text-[11px] font-mono-data text-amber-400 font-bold tracking-wide";
         }
+        if (dot) dot.className = "sensor-dot-paused";
     }
 }
 
@@ -264,16 +267,16 @@ function loadExplanation() {
             container.innerHTML = "";
             (data.top_features || []).forEach(f => {
                 const item = document.createElement("div");
-                item.className = "mb-3";
+                item.className = "mb-2.5";
                 item.innerHTML = `
-                    <div class="flex justify-between text-xs mb-1">
-                        <span class="text-gray-300 font-mono font-medium">${f.feature}</span>
-                        <span class="text-cyan-400 font-bold">+${f.impact_percentage}%</span>
+                    <div class="flex justify-between text-[11px] font-mono-data mb-1">
+                        <span class="text-slate-300 font-bold">${f.feature}</span>
+                        <span class="text-blue-400 font-bold">+${f.impact_percentage}%</span>
                     </div>
-                    <div class="w-full bg-gray-800 rounded-full h-2">
-                        <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style="width: ${f.impact_percentage * 2.2}%"></div>
+                    <div class="w-full bg-[#0f131c] rounded-sm h-1.5 overflow-hidden border border-[#1f2737]">
+                        <div class="bg-blue-500 h-1.5 rounded-sm" style="width: ${Math.min(100, f.impact_percentage * 2.2)}%"></div>
                     </div>
-                    <p class="text-[11px] text-gray-500 mt-0.5">${f.explanation}</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">${f.explanation}</p>
                 `;
                 container.appendChild(item);
             });
