@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Large Datasets (keep sample data tracked, ignore huge multi-GB dumps)
+data/raw/*.csv
+data/processed/*.parquet
+data/processed/*.csv
+!data/sample/*.csv
+
+# Trained Model Artifacts
+models/*.joblib
+models/*.pkl
+models/*.onnx
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment variables & secrets
+.env
+.env.*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/

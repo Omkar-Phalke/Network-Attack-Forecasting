@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What-If Sandbox, Explainability & Reports | SIH26153</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-[#0b0f19] text-gray-200">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-gray-800 bg-[#111827]/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-cyan-500/30">
+                    AI
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                        NetAttackForecast-AI
+                        <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">
+                            SIH26153
+                        </span>
+                    </h1>
+                    <p class="text-xs text-gray-400">Explainability, What-If Simulation & Forensic Mitigation</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex items-center space-x-2">
+                <a href="/" class="px-3 py-1.5 rounded-md text-xs font-semibold text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                    Live Telemetry & Topology
+                </a>
+                <a href="/forecast" class="px-3 py-1.5 rounded-md text-xs font-semibold text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                    Attack Forecaster & Kill Chain
+                </a>
+                <a href="/reports" class="px-3 py-1.5 rounded-md text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    What-If Sandbox & Reports
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Top Row: What-If Analysis Counterfactual Sandbox & SHAP Explainability -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- What-If Analysis Sandbox -->
+            <div class="soc-card p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <span>What-If Counterfactual Sandbox</span>
+                        <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded border border-emerald-800">Intervention Modeling</span>
+                    </h3>
+                    <span class="text-xs text-gray-400 font-mono">Simulate Risk Reduction</span>
+                </div>
+                <p class="text-xs text-gray-400 mb-4">
+                    Toggle active security controls below to simulate their immediate and future impact on adversary progression.
+                </p>
+
+                <form id="whatif-form" class="space-y-3">
+                    <label class="flex items-center justify-between p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
+                        <div>
+                            <span class="text-xs font-bold text-white block">Block Attacking Source IP (Perimeter Drop)</span>
+                            <span class="text-[11px] text-gray-400">Drops all inbound TCP/UDP flows at edge firewall</span>
+                        </div>
+                        <input id="whatif-block-ip" type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-gray-800 border-gray-700 focus:ring-cyan-500" checked>
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
+                        <div>
+                            <span class="text-xs font-bold text-white block">Quarantine Target Host (VLAN Isolation)</span>
+                            <span class="text-[11px] text-gray-400">Prevents lateral movement pivot to internal subnet</span>
+                        </div>
+                        <input id="whatif-quarantine" type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-gray-800 border-gray-700 focus:ring-cyan-500">
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
+                        <div>
+                            <span class="text-xs font-bold text-white block">Engage Adaptive Rate-Limiting</span>
+                            <span class="text-[11px] text-gray-400">Throttles SYN packets & HTTP requests to 50 req/sec</span>
+                        </div>
+                        <input id="whatif-rate-limit" type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-gray-800 border-gray-700 focus:ring-cyan-500">
+                    </label>
+
+                    <label class="flex items-center justify-between p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
+                        <div>
+                            <span class="text-xs font-bold text-white block">Enforce Zero-Trust Cross-Subnet ACL</span>
+                            <span class="text-[11px] text-gray-400">Blocks unauthorized DMZ-to-Internal database queries</span>
+                        </div>
+                        <input id="whatif-zero-trust" type="checkbox" class="w-4 h-4 rounded text-cyan-500 bg-gray-800 border-gray-700 focus:ring-cyan-500">
+                    </label>
+                </form>
+
+                <!-- Simulation Output Panel -->
+                <div class="mt-4 p-4 rounded-lg bg-black/40 border border-gray-800 flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] text-gray-400 block">Projected Post-Intervention Risk</span>
+                        <div class="flex items-baseline space-x-2">
+                            <span id="whatif-result-score" class="text-3xl font-black font-mono text-emerald-400">8.5</span>
+                            <span class="text-gray-500 text-xs">/ 100</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-gray-400 block">Delta Risk Reduction</span>
+                        <span id="whatif-result-delta" class="text-emerald-400 font-bold font-mono text-sm">-55.0 (86% reduction)</span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-gray-400 block">Containment Status</span>
+                        <span id="whatif-result-status" class="text-xs px-2 py-1 rounded font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                            CONTAINED
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explainability (SHAP Feature Waterfall) -->
+            <div class="soc-card p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <span>AI Explainability (SHAP Attribution)</span>
+                        <span class="text-[10px] bg-cyan-950 text-cyan-400 px-2 py-0.5 rounded border border-cyan-800">Feature Weights</span>
+                    </h3>
+                    <span class="text-xs text-gray-400 font-mono">Why AI Flagged Threat</span>
+                </div>
+                <p class="text-xs text-gray-400 mb-4">
+                    Marginal feature contribution waterfall showing top signals driving the forecast model.
+                </p>
+
+                <!-- Dynamic SHAP Container -->
+                <div id="shap-bars-container" class="space-y-3">
+                    <!-- Populated by dashboard.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Automated Mitigation Rule Package & Signature Export -->
+        <div class="soc-card p-5">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-white">Automated Mitigation Rules & SOAR Playbook Generation</h3>
+                    <p class="text-xs text-gray-400">Copy-paste ready perimeter firewall commands and IDS signatures</p>
+                </div>
+                <a href="/api/export/csv" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold px-4 py-2 rounded-md transition flex items-center gap-2 shadow-lg shadow-cyan-600/30">
+                    <span>Export Forensic CSV</span>
+                    <span>📥</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Linux iptables rule -->
+                <div class="p-4 rounded-lg bg-gray-900 border border-gray-800">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono font-bold text-cyan-400">Linux iptables Rules</span>
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-iptables').textContent); alert('Copied iptables rules to clipboard!');" class="text-[11px] text-gray-400 hover:text-white bg-gray-800 px-2 py-0.5 rounded border border-gray-700">Copy</button>
+                    </div>
+                    <pre id="mitigation-iptables" class="text-xs font-mono text-emerald-400 bg-black/60 p-3 rounded overflow-x-auto leading-relaxed">sudo iptables -I INPUT -s 203.0.113.19 -j DROP
+sudo iptables -I FORWARD -s 203.0.113.19 -j DROP
+sudo iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 50 -j REJECT</pre>
+                </div>
+
+                <!-- Suricata IDS Signature -->
+                <div class="p-4 rounded-lg bg-gray-900 border border-gray-800">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono font-bold text-purple-400">Suricata / Snort IDS Signature</span>
+                        <button onclick="navigator.clipboard.writeText(document.getElementById('mitigation-suricata').textContent); alert('Copied Suricata signature to clipboard!');" class="text-[11px] text-gray-400 hover:text-white bg-gray-800 px-2 py-0.5 rounded border border-gray-700">Copy</button>
+                    </div>
+                    <pre id="mitigation-suricata" class="text-xs font-mono text-yellow-300 bg-black/60 p-3 rounded overflow-x-auto leading-relaxed">alert tcp 203.0.113.19 any -> 192.168.10.20 80 (msg:"SIH26153 - AI Forecasted Attack from 203.0.113.19"; flags:S,12; threshold:type both, track by_src, count 20, seconds 60; classtype:attempted-admin; sid:1000999; rev:1;)</pre>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
