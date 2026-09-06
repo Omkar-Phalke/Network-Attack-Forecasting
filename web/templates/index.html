@@ -3,241 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetAttackForecast-AI | SIH26153 SOC Command Center</title>
+    <title>NetAttackForecast-AI | SIH26153</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Vis.js Network CDN -->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="bg-[#0b0f19] text-gray-200">
+<body class="bg-[#090d16] text-slate-200">
 
     <!-- Top Navigation Bar -->
-    <header class="border-b border-gray-800 bg-[#111827]/80 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800/80 bg-[#0d1424]/90 backdrop-blur sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
             <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-cyan-500/30">
+                <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center font-bold text-sky-400 text-sm">
                     AI
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
-                        NetAttackForecast-AI
-                        <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-slate-100 tracking-tight text-base">NetAttackForecast</span>
+                        <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
                             SIH26153
                         </span>
-                    </h1>
-                    <p class="text-xs text-gray-400">AI-Based Network Attack Forecasting & Threat Graph Progression</p>
+                    </div>
+                    <p class="text-xs text-slate-400">Network Attack Forecasting & Threat Graph Progression</p>
                 </div>
             </div>
 
-            <!-- Navigation Tabs -->
-            <nav class="flex items-center space-x-2">
-                <a href="/" class="px-3 py-1.5 rounded-md text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-                    Live Telemetry & Topology
+            <!-- Segmented Navigation Tabs -->
+            <nav class="flex items-center p-1 bg-slate-900/90 rounded-lg border border-slate-800">
+                <a href="/" class="px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 text-white shadow-sm">
+                    Live Telemetry & Graph
                 </a>
-                <a href="/forecast" class="px-3 py-1.5 rounded-md text-xs font-semibold text-gray-400 hover:text-white hover:bg-gray-800 transition">
-                    Attack Forecaster & Kill Chain
+                <a href="/forecast" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
+                    Forecaster & Kill Chain
                 </a>
-                <a href="/reports" class="px-3 py-1.5 rounded-md text-xs font-semibold text-gray-400 hover:text-white hover:bg-gray-800 transition">
-                    What-If Sandbox & Reports
+                <a href="/reports" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-200 transition">
+                    What-If & Reports
                 </a>
             </nav>
 
-            <!-- Stream Control & Status Indicator -->
+            <!-- Stream Control -->
             <div class="flex items-center space-x-3">
-                <div class="flex items-center space-x-2 bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-full">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span id="stream-status-indicator" class="text-xs font-mono font-bold text-emerald-400">LIVE STREAMING</span>
+                <div class="flex items-center space-x-2 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800">
+                    <span class="status-dot-active"></span>
+                    <span id="stream-status-indicator" class="text-[11px] font-mono text-emerald-400 font-semibold tracking-wide">LIVE</span>
                 </div>
-                <button id="toggle-stream-btn" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-md border border-gray-700 font-medium transition">
+                <button id="toggle-stream-btn" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">
                     Pause Stream
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-        <!-- Top Threat Metrics Ribbon -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="soc-card p-4 flex items-center justify-between">
-                <div>
-                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Total Ingested Flows</p>
-                    <h3 id="metric-total-flows" class="text-2xl font-black text-white mt-1 font-mono">10,000</h3>
-                    <p class="text-[11px] text-cyan-400 mt-1">Streaming from CIC-IDS2018</p>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-800">
-                    ⚡
+        <!-- Top Metrics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="clean-card p-4">
+                <span class="text-xs text-slate-400 font-medium block">Total Ingested Flows</span>
+                <div class="flex items-baseline justify-between mt-1">
+                    <h3 id="metric-total-flows" class="text-2xl font-bold font-mono-num text-white">10,000</h3>
+                    <span class="text-[11px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20 font-mono">CSE-CIC-IDS2018</span>
                 </div>
             </div>
 
-            <div class="soc-card p-4 flex items-center justify-between">
-                <div>
-                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Active Threat Actors</p>
-                    <h3 id="metric-threat-actors" class="text-2xl font-black text-amber-400 mt-1 font-mono">2</h3>
-                    <p class="text-[11px] text-amber-400 mt-1">Identified Scanning/Probing</p>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-amber-950 flex items-center justify-center text-amber-400 border border-amber-800">
-                    🎯
+            <div class="clean-card p-4">
+                <span class="text-xs text-slate-400 font-medium block">Active Threat Actors</span>
+                <div class="flex items-baseline justify-between mt-1">
+                    <h3 id="metric-threat-actors" class="text-2xl font-bold font-mono-num text-amber-400">2</h3>
+                    <span class="text-[11px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">Scanning</span>
                 </div>
             </div>
 
-            <div class="soc-card p-4 flex items-center justify-between">
-                <div>
-                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Compromised / Targeted</p>
-                    <h3 id="metric-compromised-hosts" class="text-2xl font-black text-red-400 mt-1 font-mono">1</h3>
-                    <p class="text-[11px] text-red-400 mt-1">Vulnerable Internal Hosts</p>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-red-950 flex items-center justify-center text-red-400 border border-red-800">
-                    🛡️
+            <div class="clean-card p-4">
+                <span class="text-xs text-slate-400 font-medium block">Targeted Internal Assets</span>
+                <div class="flex items-baseline justify-between mt-1">
+                    <h3 id="metric-compromised-hosts" class="text-2xl font-bold font-mono-num text-rose-400">1</h3>
+                    <span class="text-[11px] text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">Under Probe</span>
                 </div>
             </div>
 
-            <div class="soc-card p-4 flex items-center justify-between">
-                <div>
-                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Forensic Alert Events</p>
-                    <h3 id="metric-total-alerts" class="text-2xl font-black text-purple-400 mt-1 font-mono">14</h3>
-                    <p class="text-[11px] text-purple-400 mt-1">Automated SOAR Triggered</p>
-                </div>
-                <div class="w-10 h-10 rounded-full bg-purple-950 flex items-center justify-center text-purple-400 border border-purple-800">
-                    🚨
+            <div class="clean-card p-4">
+                <span class="text-xs text-slate-400 font-medium block">SOAR Incident Alerts</span>
+                <div class="flex items-baseline justify-between mt-1">
+                    <h3 id="metric-total-alerts" class="text-2xl font-bold font-mono-num text-purple-400">14</h3>
+                    <span class="text-[11px] text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">Mitigated</span>
                 </div>
             </div>
         </div>
 
-        <!-- Middle Row: Interactive Network Graph & Attack Forecasting Center -->
+        <!-- Middle Section: Network Topology & Real-Time Intelligence -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-            <!-- Dynamic Network Attack Graph (2 cols) -->
-            <div class="lg:col-span-2 soc-card p-5">
-                <div class="flex items-center justify-between mb-4">
+            <!-- Dynamic Network Topology Graph (2 Columns) -->
+            <div class="lg:col-span-2 clean-card p-5">
+                <div class="flex items-center justify-between mb-3">
                     <div>
-                        <h2 class="text-base font-bold text-white flex items-center gap-2">
+                        <h2 class="text-sm font-semibold text-slate-100 flex items-center gap-2">
                             <span>Dynamic Host Communication Graph G(V, E)</span>
-                            <span class="text-[10px] bg-blue-950 text-blue-400 px-2 py-0.5 rounded border border-blue-800">Live NetworkX</span>
+                            <span class="text-[10px] text-slate-400 font-normal">Real-Time NetworkX Topology</span>
                         </h2>
-                        <p class="text-xs text-gray-400">Green = Normal, Orange = Infiltrated / Target, Red = Attacker IP</p>
                     </div>
-                    <div class="text-xs text-gray-400 font-mono">
-                        Drag nodes • Scroll to zoom
+                    <!-- Minimalist Legend -->
+                    <div class="flex items-center space-x-3 text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Normal</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Target</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400"></span> Attacker</span>
                     </div>
                 </div>
                 <div id="network-graph"></div>
             </div>
 
-            <!-- Real-Time Risk & Forecast Card (1 col) -->
+            <!-- Right Column: Risk Score & Forecaster Cards -->
             <div class="space-y-6">
 
-                <!-- Dynamic Risk Score Meter -->
-                <div class="soc-card p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Dynamic Risk Score</h3>
-                        <span id="risk-level-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-500/20 text-orange-400 border border-orange-500/40">
+                <!-- Risk Score Card -->
+                <div class="clean-card p-5">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Dynamic Risk Score</span>
+                        <span id="risk-level-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide bg-amber-500/10 text-amber-400 border border-amber-500/30">
                             HIGH
                         </span>
                     </div>
 
                     <div class="flex items-baseline space-x-2 my-2">
-                        <span id="risk-score-value" class="text-5xl font-black font-mono text-orange-400">63.5</span>
-                        <span class="text-gray-400 text-sm">/ 100</span>
+                        <span id="risk-score-value" class="text-4xl font-black font-mono-num text-amber-400">63.5</span>
+                        <span class="text-slate-500 text-xs">/ 100</span>
                     </div>
 
-                    <!-- Component Breakdown -->
-                    <div class="space-y-2 mt-4 text-xs">
+                    <!-- Clean Score Breakdown -->
+                    <div class="space-y-2.5 mt-4 text-xs">
                         <div>
-                            <div class="flex justify-between text-gray-400 mb-1">
+                            <div class="flex justify-between text-slate-400 mb-1">
                                 <span>Threat Probability (35%)</span>
-                                <span class="font-mono text-gray-200">High</span>
+                                <span class="font-mono text-slate-200">High (35.0)</span>
                             </div>
-                            <div class="w-full bg-gray-800 rounded-full h-1.5">
-                                <div id="risk-threat-bar" class="bg-red-500 h-1.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between text-gray-400 mb-1">
-                                <span>Kill Chain Stage (30%)</span>
-                                <span class="font-mono text-gray-200">Stage 2</span>
-                            </div>
-                            <div class="w-full bg-gray-800 rounded-full h-1.5">
-                                <div id="risk-stage-bar" class="bg-orange-500 h-1.5 rounded-full" style="width: 50%"></div>
+                            <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                                <div id="risk-threat-bar" class="bg-rose-500 h-1.5 rounded-full" style="width: 85%"></div>
                             </div>
                         </div>
 
                         <div>
-                            <div class="flex justify-between text-gray-400 mb-1">
-                                <span>Asset Criticality (20%)</span>
-                                <span class="font-mono text-gray-200">0.85 (DMZ Web)</span>
+                            <div class="flex justify-between text-slate-400 mb-1">
+                                <span>Kill Chain Stage Weight (30%)</span>
+                                <span class="font-mono text-slate-200">Stage 2</span>
                             </div>
-                            <div class="w-full bg-gray-800 rounded-full h-1.5">
-                                <div id="risk-asset-bar" class="bg-yellow-500 h-1.5 rounded-full" style="width: 85%"></div>
+                            <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                                <div id="risk-stage-bar" class="bg-amber-500 h-1.5 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-slate-400 mb-1">
+                                <span>Target Asset Criticality (20%)</span>
+                                <span class="font-mono text-slate-200">0.85 (Web DMZ)</span>
+                            </div>
+                            <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                                <div id="risk-asset-bar" class="bg-sky-500 h-1.5 rounded-full" style="width: 85%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Attack Forecaster Card -->
-                <div class="soc-card p-5 border-l-4 border-l-purple-500">
+                <!-- Next-Stage Attack Forecaster Card -->
+                <div class="clean-card p-5">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs uppercase font-bold text-purple-400 tracking-wider">AI Attack Forecaster</span>
-                        <span class="text-[10px] font-mono bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">T+1 Projection</span>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Attack Forecasting</span>
+                        <span class="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">Next-Stage T+1</span>
                     </div>
 
-                    <h4 id="forecast-next-stage" class="text-lg font-bold text-white mt-1">
+                    <h4 id="forecast-next-stage" class="text-base font-bold text-white mt-1">
                         Initial Access & Brute Force
                     </h4>
-                    <p class="text-xs text-gray-400 mt-1">
-                        Adversary actively scanning; transition to credential brute-forcing anticipated.
+                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                        Adversary active scanning observed. Transition to credential brute force anticipated.
                     </p>
 
-                    <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between">
+                    <div class="mt-4 pt-3 border-t border-slate-800 grid grid-cols-2 gap-4">
                         <div>
-                            <span class="text-[11px] text-gray-400 block">Transition Confidence</span>
-                            <span id="forecast-prob-val" class="text-xl font-bold font-mono text-purple-400">58%</span>
+                            <span class="text-[11px] text-slate-400 block">Transition Confidence</span>
+                            <span id="forecast-prob-val" class="text-lg font-bold font-mono-num text-purple-400">58%</span>
                         </div>
-                        <div class="text-right">
-                            <span class="text-[11px] text-gray-400 block">Est. Time-to-Impact</span>
-                            <span id="forecast-tti-val" class="text-xl font-bold font-mono text-amber-400">56.7m</span>
+                        <div>
+                            <span class="text-[11px] text-slate-400 block">Est. Time-To-Impact</span>
+                            <span id="forecast-tti-val" class="text-lg font-bold font-mono-num text-amber-400">56.7 min</span>
                         </div>
                     </div>
-                    <div class="w-full bg-gray-800 rounded-full h-2 mt-2">
-                        <div id="forecast-prob-bar" class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full" style="width: 58%"></div>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 mt-2.5 overflow-hidden">
+                        <div id="forecast-prob-bar" class="bg-purple-500 h-1.5 rounded-full" style="width: 58%"></div>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Live Network Telemetry Stream Table -->
-        <div class="soc-card p-5">
-            <div class="flex items-center justify-between mb-4">
+        <!-- Live Network Traffic Telemetry Table -->
+        <div class="clean-card p-5">
+            <div class="flex items-center justify-between mb-3">
                 <div>
-                    <h3 class="text-base font-bold text-white flex items-center gap-2">
-                        <span>Live Network Traffic Telemetry (Attack View)</span>
-                        <span class="text-xs font-mono text-gray-400 font-normal">Replaying CSE-CIC-IDS2018 flows</span>
-                    </h3>
+                    <h3 class="text-sm font-semibold text-slate-100">Live Network Traffic Telemetry</h3>
+                    <p class="text-xs text-slate-400">Sequential playback from CSE-CIC-IDS2018 flow dataset</p>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                    <span class="text-xs text-cyan-400 font-mono">Batch Ingestion: 5 flows / 2.5s</span>
-                </div>
+                <span class="text-xs text-slate-400 font-mono">Ingesting 5 flows / 2.5s</span>
             </div>
 
             <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left text-xs">
                     <thead>
-                        <tr class="border-b border-gray-800 text-[11px] text-gray-400 uppercase tracking-wider font-semibold">
-                            <th class="py-2 px-3">Time</th>
-                            <th class="py-2 px-3">Source IP</th>
-                            <th class="py-2 px-3">Destination : Port</th>
-                            <th class="py-2 px-3">Observed Classification</th>
-                            <th class="py-2 px-3">Risk (0-100)</th>
-                            <th class="py-2 px-3">Forecasted Next Stage</th>
-                            <th class="py-2 px-3">Time-to-Impact</th>
+                        <tr class="border-b border-slate-800 text-[11px] text-slate-400 uppercase tracking-wider">
+                            <th class="py-2.5 px-3 font-medium">Time</th>
+                            <th class="py-2.5 px-3 font-medium">Source IP</th>
+                            <th class="py-2.5 px-3 font-medium">Destination : Port</th>
+                            <th class="py-2.5 px-3 font-medium">Classified Attack</th>
+                            <th class="py-2.5 px-3 font-medium">Risk Score</th>
+                            <th class="py-2.5 px-3 font-medium">Forecasted Next Stage</th>
+                            <th class="py-2.5 px-3 font-medium">Time-To-Impact</th>
                         </tr>
                     </thead>
-                    <tbody id="flow-table-body">
+                    <tbody id="flow-table-body" class="divide-y divide-slate-800/60">
                         <!-- Populated dynamically by dashboard.js -->
                     </tbody>
                 </table>
@@ -246,7 +232,6 @@
 
     </main>
 
-    <!-- Custom Script -->
     <script src="/static/js/dashboard.js"></script>
 </body>
 </html>

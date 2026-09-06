@@ -31,20 +31,20 @@ function initNetworkGraph() {
 
     const options = {
         nodes: {
-            font: { color: "#ffffff", size: 12, face: "Inter" },
+            font: { color: "#f1f5f9", size: 12, face: "-apple-system, BlinkMacSystemFont, sans-serif" },
             borderWidth: 2,
-            shadow: true,
+            shadow: false,
         },
         edges: {
-            font: { color: "#9ca3af", size: 10, align: "top" },
+            font: { color: "#94a3b8", size: 10, align: "top" },
             smooth: { type: "continuous" },
-            arrows: { to: { enabled: true, scaleFactor: 0.8 } },
+            arrows: { to: { enabled: true, scaleFactor: 0.7 } },
         },
         physics: {
             stabilization: false,
             barnesHut: {
-                gravitationalConstant: -3000,
-                springLength: 95,
+                gravitationalConstant: -2800,
+                springLength: 90,
                 springConstant: 0.04,
             },
         },
@@ -78,12 +78,18 @@ function toggleStreaming() {
 
     if (isStreaming) {
         startStream();
-        if (btn) btn.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-ping"></span> Live Stream: Active`;
-        if (indicator) indicator.textContent = "LIVE STREAMING";
+        if (btn) btn.textContent = "Pause Stream";
+        if (indicator) {
+            indicator.textContent = "LIVE";
+            indicator.className = "text-[11px] font-mono text-emerald-400 font-semibold tracking-wide";
+        }
     } else {
         if (streamInterval) clearInterval(streamInterval);
-        if (btn) btn.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-amber-400 mr-2"></span> Stream: Paused`;
-        if (indicator) indicator.textContent = "PAUSED";
+        if (btn) btn.textContent = "Resume Stream";
+        if (indicator) {
+            indicator.textContent = "PAUSED";
+            indicator.className = "text-[11px] font-mono text-amber-400 font-semibold tracking-wide";
+        }
     }
 }
 
@@ -109,29 +115,29 @@ function updateFlowTable(batch) {
 
     batch.forEach(flow => {
         const tr = document.createElement("tr");
-        tr.className = "border-b border-gray-800 hover:bg-gray-800/40 text-xs transition-colors duration-150";
+        tr.className = "border-b border-slate-800/60 hover:bg-slate-800/40 text-xs transition-colors duration-150";
 
-        let badgeColor = "bg-emerald-950 text-emerald-400 border border-emerald-800";
-        if (flow.risk_level === "Critical") badgeColor = "bg-red-950 text-red-400 border border-red-800";
-        else if (flow.risk_level === "High") badgeColor = "bg-orange-950 text-orange-400 border border-orange-800";
-        else if (flow.risk_level === "Medium") badgeColor = "bg-yellow-950 text-yellow-400 border border-yellow-800";
+        let badgeColor = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        if (flow.risk_level === "Critical") badgeColor = "bg-rose-500/10 text-rose-400 border border-rose-500/20";
+        else if (flow.risk_level === "High") badgeColor = "bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        else if (flow.risk_level === "Medium") badgeColor = "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20";
 
         tr.innerHTML = `
-            <td class="py-2 px-3 font-mono text-gray-400">${flow.timestamp.split(" ")[1] || flow.timestamp}</td>
-            <td class="py-2 px-3 font-mono text-cyan-300 font-semibold">${flow.src_ip}</td>
-            <td class="py-2 px-3 font-mono text-gray-300">${flow.dst_ip}:${flow.dst_port}</td>
-            <td class="py-2 px-3">
+            <td class="py-2.5 px-3 font-mono text-slate-400">${flow.timestamp.split(" ")[1] || flow.timestamp}</td>
+            <td class="py-2.5 px-3 font-mono text-sky-400 font-medium">${flow.src_ip}</td>
+            <td class="py-2.5 px-3 font-mono text-slate-300">${flow.dst_ip}:${flow.dst_port}</td>
+            <td class="py-2.5 px-3">
                 <span class="px-2 py-0.5 rounded text-[10px] font-medium ${badgeColor}">
                     ${flow.label}
                 </span>
             </td>
-            <td class="py-2 px-3 font-bold ${flow.risk_score >= 80 ? 'text-red-400' : (flow.risk_score >= 60 ? 'text-orange-400' : 'text-emerald-400')}">
+            <td class="py-2.5 px-3 font-bold font-mono-num ${flow.risk_score >= 80 ? 'text-rose-400' : (flow.risk_score >= 60 ? 'text-amber-400' : 'text-emerald-400')}">
                 ${flow.risk_score}
             </td>
-            <td class="py-2 px-3 text-purple-300 font-medium">
+            <td class="py-2.5 px-3 text-purple-300 font-medium">
                 ${flow.predicted_next_stage}
             </td>
-            <td class="py-2 px-3 font-mono text-amber-400">
+            <td class="py-2.5 px-3 font-mono text-amber-400">
                 ${flow.tti_minutes}m
             </td>
         `;
@@ -154,11 +160,11 @@ function updateRiskGauge(risk) {
     if (scoreElem) scoreElem.textContent = risk.risk_score;
     if (badgeElem) {
         badgeElem.textContent = risk.risk_level.toUpperCase();
-        badgeElem.className = `px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-            risk.risk_level === 'Critical' ? 'bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse' :
-            (risk.risk_level === 'High' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/40' :
-            (risk.risk_level === 'Medium' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40' :
-            'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'))
+        badgeElem.className = `px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide ${
+            risk.risk_level === 'Critical' ? 'bg-rose-500/10 text-rose-400 border border-rose-500/30' :
+            (risk.risk_level === 'High' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30' :
+            (risk.risk_level === 'Medium' ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/30' :
+            'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'))
         }`;
     }
 
