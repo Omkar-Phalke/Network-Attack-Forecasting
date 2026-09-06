@@ -186,8 +186,8 @@ cd /Users/omkarphalke/.gemini/antigravity/scratch/NetAttackForecast-AI
 # 1. Verify git status
 git status
 
-# 2. Add your GitHub remote URL (replace with your actual GitHub username & repo)
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.git
+# 2. Add your GitHub remote URL
+git remote add origin https://github.com/Omkar-Phalke/Network-Attack-Forecasting.git
 
 # 3. Ensure branch is main
 git branch -M main
